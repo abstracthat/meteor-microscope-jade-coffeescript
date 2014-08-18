@@ -20,9 +20,16 @@ Meteor.methods
 
     # pick out the whitelisted keys
     post = _.extend _.pick(postAttributes, 'url', 'title', 'message'),
+      title: postAttributes.title + (if @isSimulation then '(client)' else '(server)')
       userId: user._id
       author: user.username
       submitted: new Date().getTime()
+
+    unless @isSimulation
+      Future = Npm.require 'fibers/future'
+      future = new Future()
+      Meteor.setTimeout (-> future.return()), 5 * 1000
+      future.wait()
 
     # Return the post's ID
     postId = Posts.insert post

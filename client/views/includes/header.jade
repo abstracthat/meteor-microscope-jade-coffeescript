@@ -9,7 +9,9 @@ template(name='header')
       .nav-collapse.collapse
         ul.nav
           if currentUser
-            li: a(href="{{pathFor 'postSubmit'}}") New
+            li: a(href="{{pathFor 'postSubmit'}}") Submit Post
+            li.dropdown
+              +notifications
         ul.nav.pull-right
           li
             +loginButtons

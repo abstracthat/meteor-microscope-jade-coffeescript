@@ -1,0 +1,8 @@
+template(name='meteorErrors')
+  each errors
+    +meteorError
+
+template(name='meteorError')
+  .alert.alert-error
+    button.close(type='button', data-dismiss='alert') &times;
+    = message

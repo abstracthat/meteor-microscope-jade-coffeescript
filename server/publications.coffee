@@ -5,4 +5,4 @@ Meteor.publish 'comments', (postId) ->
   Comments.find {postId}
 
 Meteor.publish 'notifications', ->
-  Notifications.find()
+  Notifications.find userId: @userId
